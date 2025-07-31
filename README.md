@@ -27,6 +27,40 @@
       position: relative;
     }
 
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 32, 39, 0.95);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      z-index: 10;
+    }
+
+    nav button {
+      background: var(--accent);
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    nav button:hover {
+      background: #e6b800;
+    }
+    .hero {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 160px 20px 120px; /* top padding increased */
+    }
+
+
     .spotlight {
       position: fixed;
       top: 0;
@@ -51,8 +85,12 @@
       background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
       color: #fff;
       text-align: center;
-      padding: 120px 20px;
+      padding: 160px 20px 120px; /* extra padding top for nav */
     }
+    section {
+      scroll-margin-top: 100px; /* Adjust depending on nav height */
+    }
+
 
     .hero .highlight {
       color: var(--accent);
@@ -141,6 +179,17 @@
 <body>
   <div class="spotlight" id="spotlight"></div>
 
+  <!-- Navigation Bar -->
+<nav>
+  <button onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">About Me</button>
+  <button onclick="document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })">Skills</button>
+  <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">Projects</button>
+  <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Contact Me</button>
+  <!--<a href="contact.html"><button>Contact Me</button></a>-->
+</nav>
+
+
+
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="container">
@@ -156,7 +205,7 @@
       <h2>About Me</h2>
       <p>
         I'm a Computer Science graduate passionate about software development and building useful applications.
-        Skilled in Java, Python, HTML, CSS and SQL. Always eager to learn and collaborate with tech teams to bring ideas to life.
+        Skilled in Java, Python, HTML, SQL, and C++. Always eager to learn and collaborate with tech teams to bring ideas to life.
       </p>
     </div>
   </section>
@@ -171,6 +220,7 @@
         <li>HTML & CSS</li>
         <li>SQL</li>
         <li>C++</li>
+
       </ul>
     </div>
   </section>
@@ -194,7 +244,7 @@
   <section class="contact" id="contact" data-aos="flip-up">
     <div class="container">
       <h2>Contact Me</h2>
-      <form action="https://formspree.io/f/xjkorrjz" method="POST">
+      <form action="https://formspree.io/f/xldlnlza" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
@@ -213,9 +263,23 @@
     AOS.init();
 
     const spotlight = document.getElementById("spotlight");
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
+
     document.addEventListener("mousemove", (e) => {
-      spotlight.style.background = `radial-gradient(circle at ${e.clientX}px ${e.clientY}px, rgba(255, 255, 255, 0.1) 0%, transparent 60%)`;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
+
+    function animateSpotlight() {
+      const speed = 0.03;
+      currentX += (mouseX - currentX) * speed;
+      currentY += (mouseY - currentY) * speed;
+      spotlight.style.background = `radial-gradient(circle at ${currentX}px ${currentY}px, rgba(255, 255, 255, 0.1) 0%, transparent 60%)`;
+      requestAnimationFrame(animateSpotlight);
+    }
+
+    animateSpotlight();
   </script>
 </body>
 </html>
