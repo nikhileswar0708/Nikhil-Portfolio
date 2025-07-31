@@ -244,7 +244,7 @@
   <section class="contact" id="contact" data-aos="flip-up">
     <div class="container">
       <h2>Contact Me</h2>
-      <form action="https://formspree.io/f/xldlnlza" method="POST">
+      <form action="https://formspree.io/f/mnnzzzlo" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="email" name="email" placeholder="Your Email" required />
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
