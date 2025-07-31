@@ -88,7 +88,7 @@
       padding: 160px 20px 120px; /* extra padding top for nav */
     }
     section {
-      scroll-margin-top: 100px; /* Adjust depending on nav height */
+      scroll-margin-top: 50px; /* Adjust depending on nav height */
     }
 
 
